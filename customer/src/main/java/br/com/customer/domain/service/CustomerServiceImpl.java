@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Slf4j
 @Service
 public class CustomerServiceImpl implements CustomerService{
@@ -19,10 +22,16 @@ public class CustomerServiceImpl implements CustomerService{
         this.modelMapper = modelMapper;
     }
 
-    public void createCustomer (CustomerDTO customerDTO) {
-        log.info("Calling the method to create customer {}", customerDTO);
+    public CustomerDTO createCustomer (CustomerDTO customerDTO) {
+        log.info("Calling the method to create customer");
 
         CustomerEntity customerEntity = modelMapper.map(customerDTO, CustomerEntity.class);
         repository.save(customerEntity);
+        return modelMapper.map(repository.save(customerEntity), CustomerDTO.class);
+    }
+
+    public List<CustomerDTO> findAllCustomer() {
+        return repository.findAll().stream().map(
+                customerEntity -> modelMapper.map(customerEntity, CustomerDTO.class)).collect(Collectors.toList());
     }
 }

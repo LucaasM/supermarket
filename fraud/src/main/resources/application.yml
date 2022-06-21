@@ -1,0 +1,14 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: microservice-fraud
+  datasource:
+    username: 'postgres'
+    password: 'postgres'
+    url: jdbc:postgresql://localhost:5432/fraud
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
