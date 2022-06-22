@@ -1,0 +1,16 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: microservice-notification
+  datasource:
+    username: 'postgres'
+    password: 'postgres'
+    url: jdbc:postgresql://localhost:5432/notification
+  flyway:
+    enabled: true
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
