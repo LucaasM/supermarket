@@ -15,6 +15,6 @@ public class FraudDTO {
     private Long id;
     private String description;
     private Long customerId;
-    private boolean isfraud;
+    private boolean isFraud;
     private LocalDateTime createAt;
 }
